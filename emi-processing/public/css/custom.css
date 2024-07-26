@@ -1,0 +1,94 @@
+/* custom.css */
+
+/* Navbar Styles */
+.navbar {
+    background-color: #f8f9fa;
+    /* Light gray background */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    /* Larger brand text */
+    font-weight: bold;
+    color: #3490dc;
+    /* Primary color */
+}
+
+.navbar-brand:hover {
+    color: #1d68a7;
+    /* Darker primary color on hover */
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    /* Slightly larger link text */
+    color: #3490dc;
+    /* Primary color */
+}
+
+.nav-link:hover {
+    color: #1d68a7;
+    /* Darker primary color on hover */
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+    border-radius: 0.5rem;
+    /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Light shadow */
+}
+
+.dropdown-item {
+    font-size: 1rem;
+    /* Standard item text */
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+    /* Light gray background on hover */
+}
+
+/* Button Styles */
+.btn {
+    font-size: 1rem;
+    /* Standard button text */
+    padding: 0.5rem 1rem;
+    /* Padding for buttons */
+    border-radius: 0.25rem;
+    /* Slightly rounded corners */
+}
+
+.btn-primary {
+    background-color: #3490dc;
+    /* Primary color */
+    border-color: #3490dc;
+    /* Primary color */
+}
+
+.btn-primary:hover {
+    background-color: #1d68a7;
+    /* Darker primary color on hover */
+    border-color: #1d68a7;
+    /* Darker primary color on hover */
+}
+
+/* General Styles */
+body {
+    font-family: 'Nunito', sans-serif;
+    /* Font family */
+}
+
+.container {
+    max-width: 1140px;
+    /* Maximum width for the container */
+}
+
+.py-4 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
