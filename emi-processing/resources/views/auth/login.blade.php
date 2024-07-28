@@ -1,53 +1,69 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <form id="login-form">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input id="username" type="text" name="username" class="form-control" required>
-                            <div id="username-error" class="text-danger"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input id="password" type="password" name="password" class="form-control" required>
-                            <div id="password-error" class="text-danger"></div>
-                        </div>
-                        <div class="mb-3">
-                            <button type="button" class="btn btn-primary" onclick="comeHerethere()">Login</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .login-container button {
+            width: 50%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    @if($errors->any())
+        <div class="error">
+            {{ $errors->first() }}
         </div>
-    </div>
+    @endif
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
 </div>
-
-<script>
-    function comeHerethere() {
-        console.log("jQuery loaded:", $);
-        $.ajax({
-            url: '{{ route('login') }}',
-            type: 'POST',
-            data: $('#login-form').serialize(),
-            success: function(response) {
-                if (response.success) {
-                    window.location.href = response.redirectUrl;
-                } else {
-                    $('#username-error').text(response.errors.username || '');
-                    $('#password-error').text(response.errors.password || '');
-                }
-            },
-            error: function(xhr) {
-                console.error('AJAX Error:', xhr.responseText);
-            }
-        });
-    }
-</script>
-
-@endsection
+</body>
+</html>

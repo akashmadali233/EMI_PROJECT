@@ -1,14 +1,19 @@
 <?php
-
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\EMIController;
 
+// Redirect root to log in form
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'loginController']);
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route::get('/loans', [LoanController::class, 'index'])->middleware('auth');
-// Route::post('/loans/process', [LoanController::class, 'process'])->middleware('auth');
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('loan-details', [EMIController::class, 'showLoanDetails'])->name('loan-details');
+    Route::get('process-data', [EMIController::class, 'processEMIData'])->name('process-data');
+});
 
